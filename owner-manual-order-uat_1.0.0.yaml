@@ -1,0 +1,131 @@
+---
+product: "1.0.0"
+info:
+  name: "owner-manual-order-stage"
+  title: "Owner Manual Order-STAGE"
+  version: "1.0.0"
+  description: "This API will be used to get the available Owner Manuals for the given\
+    \ vehicle and to order the Owner Manuals for the given vehicle from the Brand\
+    \ sites."
+  contact:
+    name: "Savage Linda"
+    email: "linda.savage@fcagroup.com"
+visibility:
+  view:
+    enabled: true
+    type: "public"
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: "authenticated"
+    tags: []
+    orgs: []
+apis:
+  salesforce-oauth-api-stage:
+    $ref: "salesforce-oauth-api-stage_1.0.0.yaml"
+  owner-manual-order-stage:
+    $ref: "owner-manual-order-stage_1.0.0.yaml"
+plans:
+  platinum:
+    title: "Platinum"
+    description: ""
+    approval: true
+    apis:
+      owner-manual-order-stage:
+        operations:
+        - path: "/manuals/retrieve"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "2000/1hour"
+        - path: "/manuals/order"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "2000/1hour"
+      salesforce-oauth-api-stage:
+        operations:
+        - path: "/token"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "5000/1hour"
+    rate-limits:
+      rate-limit-1:
+        hard-limit: true
+        value: "5000/1hour"
+      rate-limit-2:
+        hard-limit: true
+        value: "2000/1hour"
+  gold:
+    title: "Gold"
+    description: "Allows users to request upto 500 API calls per hour"
+    approval: true
+    apis:
+      owner-manual-order-stage:
+        operations:
+        - path: "/manuals/retrieve"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "1000/1hour"
+        - path: "/manuals/order"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "1000/1hour"
+      salesforce-oauth-api-stage:
+        operations:
+        - path: "/token"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "3000/1hour"
+    rate-limits:
+      rate-limit-1:
+        hard-limit: true
+        value: "3000/1hour"
+      rate-limit-2:
+        hard-limit: true
+        value: "1000/1hour"
+  silver:
+    title: "Silver"
+    description: ""
+    approval: true
+    apis:
+      owner-manual-order-stage:
+        operations:
+        - path: "/manuals/retrieve"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "500/1hour"
+        - path: "/manuals/order"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "500/1hour"
+      salesforce-oauth-api-stage:
+        operations:
+        - path: "/token"
+          operation: "post"
+          rate-limits:
+            rate-limit-1:
+              hard-limit: true
+              value: "2000/1hour"
+    rate-limits:
+      rate-limit-1:
+        hard-limit: true
+        value: "2000/1hour"
+      rate-limit-2:
+        hard-limit: true
+        value: "500/1hour"
